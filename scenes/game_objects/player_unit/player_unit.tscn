@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsus5u5ml3tow"]
+
+[ext_resource type="Texture2D" uid="uid://bir3mp73uinw5" path="res://scenes/game_objects/player_unit/theif.png" id="1_3r0gh"]
+
+[node name="PlayerUnit" type="CharacterBody2D" groups=["PlayerUnits"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3r0gh")
+offset = Vector2(0, -15)
