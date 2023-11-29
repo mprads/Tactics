@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scenes/game_objects/player_unit/player_unit.gd" id="1_pguir"]
 
 [node name="PlayerUnit" type="CharacterBody2D" groups=["PlayerUnits"]]
+z_index = 5
 script = ExtResource("1_pguir")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
