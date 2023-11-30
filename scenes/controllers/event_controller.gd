@@ -12,7 +12,7 @@ func _ready() -> void:
 func _input(event) -> void:
 	if event.is_action_pressed("show_moveable") && unit_action_controller.get_selected_unit() != null:
 		var player = unit_action_controller.get_selected_unit()
-		tile_controller.show_moveable_tiles(player.global_position)
+		tile_controller.flood_fill_hover_tiles(player.global_position, player.get_move_distance())
 
 	if event.is_action_pressed("move") && unit_action_controller.get_selected_unit() != null:
 		var player = unit_action_controller.get_selected_unit()
@@ -22,6 +22,7 @@ func _input(event) -> void:
 		var id_path = navigation_controller.create_id_path(mouse_position, player.global_position)
 		var world_path = navigation_controller.convert_id_path_to_world_positions(id_path)
 		player.set_path(world_path)
+		tile_controller.clear_layer("hover_layer")
 
 
 
