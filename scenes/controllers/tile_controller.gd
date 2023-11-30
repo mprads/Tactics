@@ -10,6 +10,10 @@ var hover_layer = 1
 
 var mouse_layer = 2
 
+var arrow_layer = 3
+var arrow_terrain_set = 0
+var arrow_terrain = 0
+
 var attack_atlas = Vector2i(0, 0)
 var move_atlas = Vector2i(1, 0)
 var mouse_atlas = Vector2i(2, 0)
@@ -18,7 +22,7 @@ var last_mouse_pos: Vector2
 
 const DIRECTIONS = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 
 	if mouse_pos == last_mouse_pos:
@@ -58,8 +62,6 @@ func flood_fill_hover_tiles(pos: Vector2, max_distance: int) -> void:
 		tile_map.set_cell(hover_layer, tile, hover_source, move_atlas)
 
 
-
-
 func clear_layer(layer_name: String) -> void:
 	match layer_name:
 		"ground_layer":
@@ -74,3 +76,9 @@ func update_mouse_hover(mouse_pos: Vector2) -> void:
 	var new_pos = tile_map.local_to_map(mouse_pos)
 	tile_map.clear_layer(mouse_layer)
 	tile_map.set_cell(mouse_layer, new_pos, hover_source, mouse_atlas)
+
+func draw_arrow_along_path(id_path: Array[Vector2i]) -> void:
+	tile_map.clear_layer(arrow_layer)
+	tile_map.set_cells_terrain_connect(arrow_layer, id_path, arrow_terrain_set, arrow_terrain)
+#	for id in id_path:
+#		tile_map.set_cell(arrow_layer, id, hover_source, mouse_atlas)

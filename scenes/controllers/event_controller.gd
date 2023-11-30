@@ -6,8 +6,19 @@ extends Node2D
 @onready var navigation_controller = $"../NavigationController"
 @onready var tile_controller = $"../TileController"
 
+var previous_mouse_pos
+
 func _ready() -> void:
-	pass
+	previous_mouse_pos = get_global_mouse_position()
+
+
+func _process(delta: float) -> void:
+	# once state machine is in place change check to find move state
+	if get_global_mouse_position() != previous_mouse_pos:
+		var player = unit_action_controller.get_selected_unit()
+		var mouse_position = get_global_mouse_position()
+		var path_to_mouse = navigation_controller.create_id_path(mouse_position, player.global_position)
+		tile_controller.draw_arrow_along_path(path_to_mouse)
 
 func _input(event) -> void:
 	if event.is_action_pressed("show_moveable") && unit_action_controller.get_selected_unit() != null:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xr02evmfwee2"
-path="res://.godot/imported/hover_tiles.png-2cfab470d3c2ead93f9405c0aaac794b.ctex"
+uid="uid://cu0cfr51dsu4y"
+path="res://.godot/imported/arrows.png-75e7a7e13e1839d2d90674ed21ccd04b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/environment/hover_tiles.png"
-dest_files=["res://.godot/imported/hover_tiles.png-2cfab470d3c2ead93f9405c0aaac794b.ctex"]
+source_file="res://assets/ui/arrows.png"
+dest_files=["res://.godot/imported/arrows.png-75e7a7e13e1839d2d90674ed21ccd04b.ctex"]
 
 [params]
 

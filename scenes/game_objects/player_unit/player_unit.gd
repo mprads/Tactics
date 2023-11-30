@@ -5,7 +5,7 @@ extends CharacterBody2D
 var current_path: Array[Vector2]
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	if current_path.is_empty():
 		return
 
