@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var stats: Resource
+
 var current_path: Array[Vector2]
 
 
@@ -17,3 +19,7 @@ func _physics_process(delta: float) -> void:
 func set_path(path: Array[Vector2]) -> void:
 	print("setting path: ", path)
 	current_path = path
+
+
+func get_move_distance() -> int:
+	return stats.movement

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://dtksfj1c71vja"]
+
+[ext_resource type="Script" path="res://resources/units/unit_stats.gd" id="1_4hb8h"]
+
+[resource]
+script = ExtResource("1_4hb8h")
+name = "Thief"
+health = 10
+movement = 3
