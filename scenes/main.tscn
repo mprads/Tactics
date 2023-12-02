@@ -1,23 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvw7ngvy36fn5"]
+[gd_scene load_steps=7 format=3 uid="uid://bvw7ngvy36fn5"]
 
 [ext_resource type="PackedScene" uid="uid://3o0uvi3dmq8u" path="res://assets/environment/tile_map.tscn" id="1_ciivq"]
 [ext_resource type="PackedScene" uid="uid://bsus5u5ml3tow" path="res://scenes/game_objects/player_unit/player_unit.tscn" id="2_urugy"]
 [ext_resource type="PackedScene" uid="uid://dq138k4y4ihfa" path="res://scenes/controllers/event_controller.tscn" id="2_wr16d"]
 [ext_resource type="PackedScene" uid="uid://dkloosplokane" path="res://scenes/controllers/unit_action_controller.tscn" id="4_57ouv"]
 [ext_resource type="PackedScene" uid="uid://cqq4jav03viyf" path="res://scenes/controllers/navigation_controller.tscn" id="4_876vf"]
+[ext_resource type="PackedScene" uid="uid://dgp8f1u3lw85t" path="res://scenes/controllers/tile_controller.tscn" id="6_0epdc"]
 
 [node name="Main" type="Node2D"]
 
-[node name="EventController" parent="." instance=ExtResource("2_wr16d")]
-
-[node name="UnitActionController" parent="." instance=ExtResource("4_57ouv")]
-
-[node name="NavigationController" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("4_876vf")]
-tile_map = NodePath("../TileMap")
-
 [node name="TileMap" parent="." instance=ExtResource("1_ciivq")]
-layer_0/tile_data = PackedInt32Array(0, 0, 0, -65536, 0, 0, -1, 0, 0, 65535, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 1, 0, 0, -65535, 0, 0, -131072, 0, 0, -65537, 0, 0, -65538, 0, 0, -2, 0, 0, 65534, 0, 0, 196607, 0, 0, 131070, 0, 0, 196606, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 65538, 0, 0, 2, 0, 0, -65534, 0, 0, -131070, 0, 0, -131071, 0, 0, -196605, 0, 0, -196606, 0, 0, -196607, 0, 0, -196608, 0, 0, -131073, 0, 0, -131074, 0, 0, -131075, 0, 0, -65539, 0, 0, -3, 0, 0, 65533, 0, 0, 131069, 0, 0, 196605, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 131075, 0, 0, 65539, 0, 0, 3, 0, 0, -65533, 0, 0, -131069, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 131078, 0, 0, 65542, 0, 0, 6, 0, 0, -65530, 0, 0, -131066, 0, 0, -196602, 0, 0, -196603, 0, 0, -196604, 0, 0)
+
+[node name="Controllers" type="Node" parent="."]
+
+[node name="EventController" parent="Controllers" instance=ExtResource("2_wr16d")]
+
+[node name="UnitActionController" parent="Controllers" instance=ExtResource("4_57ouv")]
+
+[node name="NavigationController" parent="Controllers" node_paths=PackedStringArray("tile_map") instance=ExtResource("4_876vf")]
+tile_map = NodePath("../../TileMap")
+
+[node name="TileController" parent="Controllers" node_paths=PackedStringArray("tile_map") instance=ExtResource("6_0epdc")]
+tile_map = NodePath("../../TileMap")
 
 [node name="PlayerUnit" parent="." instance=ExtResource("2_urugy")]
+position = Vector2(16, 15)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerUnit"]

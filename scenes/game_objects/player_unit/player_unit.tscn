@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsus5u5ml3tow"]
+[gd_scene load_steps=4 format=3 uid="uid://bsus5u5ml3tow"]
 
 [ext_resource type="Texture2D" uid="uid://bir3mp73uinw5" path="res://scenes/game_objects/player_unit/theif.png" id="1_3r0gh"]
 [ext_resource type="Script" path="res://scenes/game_objects/player_unit/player_unit.gd" id="1_pguir"]
+[ext_resource type="Resource" uid="uid://dtksfj1c71vja" path="res://resources/units/thief.tres" id="2_ei8va"]
 
 [node name="PlayerUnit" type="CharacterBody2D" groups=["PlayerUnits"]]
+z_index = 5
 script = ExtResource("1_pguir")
+stats = ExtResource("2_ei8va")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3r0gh")
