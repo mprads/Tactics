@@ -17,10 +17,16 @@ func _ready() -> void:
 func create_id_path(mouse_position: Vector2, player_position: Vector2) -> Array[Vector2i]:
 	var player_tile_position = tile_map.local_to_map(player_position)
 	var mouse_tile_position = tile_map.local_to_map(mouse_position)
-	print("mouse pos: ", mouse_tile_position, "player pos: ", player_tile_position)
-	var id_path = astar_grid.get_id_path(player_tile_position, mouse_tile_position).slice(1)
-	print("created path: ", id_path)
-	return id_path
+	if astar_grid.is_in_boundsv(mouse_tile_position):
+		var id_path = astar_grid.get_id_path(player_tile_position, mouse_tile_position).slice(1)
+#		print("created path: ", id_path)
+		return id_path
+	else:
+		return []
+
+
+func convert_world_position_to_id(pos: Vector2) -> Vector2i:
+	return tile_map.local_to_map(pos)
 
 
 func convert_id_path_to_world_positions(id_path: Array[Vector2i]) -> Array[Vector2]:

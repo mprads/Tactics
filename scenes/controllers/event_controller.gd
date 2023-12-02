@@ -10,6 +10,7 @@ var previous_mouse_pos
 
 func _ready() -> void:
 	previous_mouse_pos = get_global_mouse_position()
+	tile_controller.generate_map(10, 10)
 
 
 func _process(delta: float) -> void:
@@ -23,7 +24,7 @@ func _process(delta: float) -> void:
 func _input(event) -> void:
 	if event.is_action_pressed("show_moveable") && unit_action_controller.get_selected_unit() != null:
 		var player = unit_action_controller.get_selected_unit()
-		tile_controller.flood_fill_hover_tiles(player.global_position, player.get_move_distance())
+		tile_controller.flood_fill_hover_tiles(player.global_position, player.get_move_distance(), true)
 
 	if event.is_action_pressed("move") && unit_action_controller.get_selected_unit() != null:
 		var player = unit_action_controller.get_selected_unit()
@@ -34,6 +35,9 @@ func _input(event) -> void:
 		var world_path = navigation_controller.convert_id_path_to_world_positions(id_path)
 		player.set_path(world_path)
 		tile_controller.clear_layer("hover_layer")
+		# this should be handled somewhere else, not sure where, probably a signal of unit move in autoload events
+		tile_controller.update_tile_data(navigation_controller.convert_world_position_to_id(player.global_position), "occupied")
+		tile_controller.update_tile_data(id_path[id_path.size() - 1], "occupied")
 
 
 
