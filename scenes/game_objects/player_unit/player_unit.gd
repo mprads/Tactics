@@ -3,12 +3,15 @@ extends CharacterBody2D
 @export var stats: Resource
 
 var current_path: Array[Vector2]
+var is_moving: bool = false
 
 
 func _process(delta: float) -> void:
 	if current_path.is_empty():
+		is_moving = false
 		return
 
+	is_moving = true
 	var target_position = current_path.front()
 	global_position = global_position.move_toward(target_position, 1)
 
@@ -23,3 +26,7 @@ func set_path(path: Array[Vector2]) -> void:
 
 func get_move_distance() -> int:
 	return stats.movement
+
+
+func get_is_moving() -> bool:
+	return is_moving

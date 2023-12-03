@@ -28,16 +28,22 @@ func _input(event) -> void:
 
 	if event.is_action_pressed("move") && unit_action_controller.get_selected_unit() != null:
 		var player = unit_action_controller.get_selected_unit()
+		if player.get_is_moving():
+			return
+
 		# base node changed from node to node2d in order to use global mouse position.
 		# there should be a way to get the global position from the viewport without chanign to node2d
 		var mouse_position = get_global_mouse_position()
+		var selected_tile = navigation_controller.convert_world_position_to_id(mouse_position)
+		var player_tile = navigation_controller.convert_world_position_to_id(mouse_position)
 		var id_path = navigation_controller.create_id_path(mouse_position, player.global_position)
+
+		if id_path.size() > player.get_move_distance():
+			return
+
 		var world_path = navigation_controller.convert_id_path_to_world_positions(id_path)
 		player.set_path(world_path)
 		tile_controller.clear_layer("hover_layer")
 		# this should be handled somewhere else, not sure where, probably a signal of unit move in autoload events
 		tile_controller.update_tile_data(navigation_controller.convert_world_position_to_id(player.global_position), "occupied")
 		tile_controller.update_tile_data(id_path[id_path.size() - 1], "occupied")
-
-
-
