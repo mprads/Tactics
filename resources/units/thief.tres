@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://dtksfj1c71vja"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://dtksfj1c71vja"]
 
 [ext_resource type="Script" path="res://resources/units/unit_stats.gd" id="1_4hb8h"]
+[ext_resource type="Texture2D" uid="uid://bir3mp73uinw5" path="res://assets/theif.png" id="2_ciua5"]
 
 [resource]
 script = ExtResource("1_4hb8h")
 name = "Thief"
-health = 10
+max_health = 0
 movement = 3
+sprite = ExtResource("2_ciua5")

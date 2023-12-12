@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bir3mp73uinw5"
-path="res://.godot/imported/theif.png-b2d2ee563e4bc420edc3c80c1d1c4419.ctex"
+uid="uid://bj8idbw1hgxnn"
+path="res://.godot/imported/priest.png-e60462b45b51f3d6dab7cfe2d85e45b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_objects/player_unit/theif.png"
-dest_files=["res://.godot/imported/theif.png-b2d2ee563e4bc420edc3c80c1d1c4419.ctex"]
+source_file="res://assets/priest.png"
+dest_files=["res://.godot/imported/priest.png-e60462b45b51f3d6dab7cfe2d85e45b3.ctex"]
 
 [params]
 

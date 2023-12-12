@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://c1uuckfwvc8n"]
+
+[ext_resource type="Script" path="res://resources/units/unit_stats.gd" id="1_6ki4t"]
+[ext_resource type="Texture2D" uid="uid://4xaska1h3472" path="res://assets/knight.png" id="2_rrl34"]
+
+[resource]
+script = ExtResource("1_6ki4t")
+name = "Knight"
+max_health = 20
+movement = 2
+sprite = ExtResource("2_rrl34")

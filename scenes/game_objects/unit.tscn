@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://3qqwj3s53hhd"]
+
+[ext_resource type="Script" path="res://scenes/game_objects/unit.gd" id="1_w55wg"]
+
+[node name="Unit" type="Node2D"]
+script = ExtResource("1_w55wg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 50
+z_as_relative = false
+y_sort_enabled = true
