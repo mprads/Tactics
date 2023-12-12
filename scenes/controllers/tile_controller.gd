@@ -25,6 +25,11 @@ var last_mouse_pos: Vector2
 
 var grid = {}
 
+
+func _ready() -> void:
+	GameEvents.unit_selected.connect(_on_unit_selected)
+
+
 func _process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 
@@ -32,14 +37,14 @@ func _process(delta: float) -> void:
 		return
 
 	last_mouse_pos = mouse_pos
-	update_mouse_hover(mouse_pos)
+	_update_mouse_hover(mouse_pos)
 
 
 func generate_map(x: int, y: int) -> void:
 	for i in x:
 		for j in y:
 			grid[str(Vector2i(i, j))] = {
-				"occupied": false
+				"unit": null
 			}
 			tile_map.set_cell(ground_layer, Vector2i(i, j), ground_source, ground_atlas)
 
@@ -56,7 +61,7 @@ func flood_fill_hover_tiles(pos: Vector2, max_distance: int, exclude_occupided: 
 			continue
 		elif !grid.has(str(current_tile)):
 			continue
-		elif exclude_occupided && grid[str(current_tile)]["occupied"] && current_tile != starting_pos:
+		elif exclude_occupided && grid[str(current_tile)]["unit"] && current_tile != starting_pos:
 			continue
 
 		var distance: int = get_difference_between_tiles(starting_pos, current_tile)
@@ -86,7 +91,7 @@ func clear_layer(layer_name: String) -> void:
 			tile_map.clear_layer(mouse_layer)
 
 
-func update_mouse_hover(mouse_pos: Vector2) -> void:
+func _update_mouse_hover(mouse_pos: Vector2) -> void:
 	var new_pos = tile_map.local_to_map(mouse_pos)
 	if grid.has(str(new_pos)):
 		tile_map.clear_layer(mouse_layer)
@@ -98,10 +103,19 @@ func draw_arrow_along_path(id_path: Array[Vector2i]) -> void:
 	tile_map.set_cells_terrain_connect(arrow_layer, id_path, arrow_terrain_set, arrow_terrain)
 
 
-func update_tile_data(id: Vector2i, key) -> void:
-	grid[str(id)][key] = !grid[str(id)][key]
+func update_tile_data(id: Vector2i, key, value) -> void:
+	grid[str(id)][key] = value
+
+
+func get_tile_data(id: Vector2i) -> Dictionary:
+	return grid[str(id)]
 
 
 func get_difference_between_tiles(starting: Vector2i, end: Vector2i) -> int:
 	var difference: Vector2i = (end - starting).abs()
 	return int(difference.x + difference.y)
+
+
+func _on_unit_selected(unit: Node2D) -> void:
+	clear_layer("hover_layer")
+	flood_fill_hover_tiles(unit.global_position, 0)

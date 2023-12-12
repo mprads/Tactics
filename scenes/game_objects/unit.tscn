@@ -8,4 +8,4 @@ script = ExtResource("1_w55wg")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 50
 z_as_relative = false
-y_sort_enabled = true
+offset = Vector2(0, -16)

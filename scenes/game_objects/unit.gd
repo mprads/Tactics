@@ -5,9 +5,12 @@ extends Node2D
 var unit_stats: UnitStats
 var current_path: Array[Vector2]
 var is_moving: bool = false
+var is_selected: bool = false
 
 
 func _ready() -> void:
+	GameEvents.unit_selected.connect(_on_selected_unit)
+
 	if unit_stats == null:
 		return
 
@@ -15,9 +18,13 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if !is_selected:
+		return
+
 	if current_path.is_empty():
-		is_moving = false
-		GameEvents.emit_move_ended()
+		if is_moving:
+			is_moving = false
+			GameEvents.emit_move_ended()
 		return
 
 	if !is_moving:
@@ -51,3 +58,8 @@ func get_move_distance() -> int:
 
 func get_is_moving() -> bool:
 	return is_moving
+
+
+func _on_selected_unit(unit: Node2D) -> void:
+	if unit == self:
+		is_selected = true

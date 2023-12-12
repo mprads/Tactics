@@ -1,21 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvw7ngvy36fn5"]
+[gd_scene load_steps=6 format=3 uid="uid://bvw7ngvy36fn5"]
 
 [ext_resource type="PackedScene" uid="uid://3o0uvi3dmq8u" path="res://assets/environment/tile_map.tscn" id="1_ciivq"]
-[ext_resource type="PackedScene" uid="uid://bsus5u5ml3tow" path="res://scenes/game_objects/player_unit/player_unit.tscn" id="2_urugy"]
 [ext_resource type="PackedScene" uid="uid://dq138k4y4ihfa" path="res://scenes/controllers/event_controller.tscn" id="2_wr16d"]
-[ext_resource type="PackedScene" uid="uid://dkloosplokane" path="res://scenes/controllers/unit_action_controller.tscn" id="4_57ouv"]
+[ext_resource type="PackedScene" uid="uid://3qqwj3s53hhd" path="res://scenes/game_objects/unit.tscn" id="3_4sqhb"]
 [ext_resource type="PackedScene" uid="uid://cqq4jav03viyf" path="res://scenes/controllers/navigation_controller.tscn" id="4_876vf"]
 [ext_resource type="PackedScene" uid="uid://dgp8f1u3lw85t" path="res://scenes/controllers/tile_controller.tscn" id="6_0epdc"]
 
 [node name="Main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="TileMap" parent="." instance=ExtResource("1_ciivq")]
 
 [node name="Controllers" type="Node" parent="."]
 
 [node name="EventController" parent="Controllers" instance=ExtResource("2_wr16d")]
-
-[node name="UnitActionController" parent="Controllers" instance=ExtResource("4_57ouv")]
+unit_scene = ExtResource("3_4sqhb")
 
 [node name="NavigationController" parent="Controllers" node_paths=PackedStringArray("tile_map") instance=ExtResource("4_876vf")]
 tile_map = NodePath("../../TileMap")
@@ -23,7 +23,4 @@ tile_map = NodePath("../../TileMap")
 [node name="TileController" parent="Controllers" node_paths=PackedStringArray("tile_map") instance=ExtResource("6_0epdc")]
 tile_map = NodePath("../../TileMap")
 
-[node name="PlayerUnit" parent="." instance=ExtResource("2_urugy")]
-position = Vector2(16, 15)
-
-[node name="Camera2D" type="Camera2D" parent="PlayerUnit"]
+[node name="PlayerParty" type="Node" parent="." groups=["PlayerParty"]]
